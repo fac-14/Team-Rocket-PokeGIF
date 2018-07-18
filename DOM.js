@@ -14,13 +14,22 @@ function lookUpPokeApi(input, callback) {
   callback(pokeApiResponse);
 }
 
+// function to randomly assign new gif
 function lookUpGiphy(input, callback) {
 
-  var giphyResponse = "https://media.giphy.com/media/I2nZMy0sI0ySA/giphy.gif";
+  var giphyResponse = [
+    "https://media.giphy.com/media/I2nZMy0sI0ySA/giphy.gif",
+    "https://media.giphy.com/media/SfjCRiDNA951m/giphy.gif",
+    "https://media.giphy.com/media/51S87GVazTD7W/giphy.gif",
+    "https://media.giphy.com/media/imoIuptU6lelW/giphy.gif"
+  ];
 
-  callback(giphyResponse);
+  var randomGif = Math.floor(Math.random() * 3);
+
+  callback(giphyResponse[randomGif]);
 
 }
+
 
 //IIFE (Not Eevee...)
 (function(){
@@ -37,6 +46,7 @@ function lookUpGiphy(input, callback) {
     lookUpGiphy(searchInput.value, gifCallback);
   });
 
+  //abstract function to add text elements within pokemon details
   addNewNode = function(parentNodeId, element, text) {
     var parent = document.getElementById(parentNodeId);
     var elem = document.createElement(element);
@@ -49,18 +59,30 @@ function lookUpGiphy(input, callback) {
     addNewNode('pokemon-details', element, text);
   }
 
+  killChildren = function(parentNode) {
+    while (parentNode.hasChildNodes()) {
+      parentNode.removeChild(parentNode.lastChild);
+    }
+  }
+
   //callback function to be run on pokeAPI response
   pokeCallback = function(pokeResponse) {
     console.log(pokeResponse);
 
     //remove all existing child nodes from #pokemon-details
-    while (pokemonDetails.hasChildNodes()) {
-      pokemonDetails.removeChild(pokemonDetails.lastChild);
-    }
+    killChildren(pokemonDetails);
+
+    
+    // capitalising the Pokemon name (e.g. Bulbasaur)
+    var name = pokeResponse.name;
+    name = name.split('');
+    name[0] = name[0].toUpperCase();
+    name = name.join('');
 
     //add new child nodes to #pokemon-details
-    addDetailsNode('h2', pokeResponse.name);
-    
+
+    addDetailsNode('h2', name);
+
     //add sprite image
     var sprite = document.createElement('img');
     sprite.src = pokeResponse.sprite;
@@ -68,8 +90,10 @@ function lookUpGiphy(input, callback) {
     sprite.classList.add('sprite-image');
     pokemonDetails.appendChild(sprite);
 
+    addDetailsNode('h3', 'Description:');
     addDetailsNode('p', pokeResponse.description);
-    addDetailsNode('p', 'Pokedex Entry Number: ' + pokeResponse.entryNumber);
+    addDetailsNode('h3', 'Pokedex Entry Number:');
+    addDetailsNode('p', pokeResponse.entryNumber);
 
     //create UL for moves and add each move as an LI
     var movesList = document.createElement('ul');
@@ -88,20 +112,43 @@ function lookUpGiphy(input, callback) {
     pokemonDetails.appendChild(movesList);
 
     //turn types array into string
-    var types = "Type: ";
+    var types = "";
     for (i=0; i<pokeResponse.type.length; i++) {
       if (i > 0) {
         types += " / ";
       }
       types += pokeResponse.type[i];
     }
-
+    addDetailsNode('h3', 'Types:');
     addDetailsNode('p', types);
   }
 
   //callback function to be run on Giphy API response
   gifCallback = function(giphyResponse) {
-    console.log(giphyResponse);
+
+    // console.log(giphyResponse);
+    var image = document.getElementById('image');
+    var gif = document.createElement('img');
+
+    killChildren(image);
+
+    gif.src = giphyResponse;
+    gif.alt = "Randomly generated gif";
+    gif.classList.add('pokemon-gif');
+
+    image.appendChild(gif);
+
+
   }
+
+  // function to randomly generate the next gif, calling on Giphy API response
+  var getNextGIF = document.getElementById('getNextGIF');
+
+  getNextGIF.addEventListener('click', function() {
+    var name = document.querySelector("#pokemon-details > h2").textContent;
+    lookUpGiphy(name, gifCallback);
+
+
+  });
 
 })();
