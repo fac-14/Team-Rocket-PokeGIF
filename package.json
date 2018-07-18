@@ -1,0 +1,25 @@
+{
+  "name": "Team-Rocket-PokeGIF",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac-14/Team-Rocket-PokeGIF.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac-14/Team-Rocket-PokeGIF/issues"
+  },
+  "homepage": "https://github.com/fac-14/Team-Rocket-PokeGIF#readme",
+  "devDependencies": {
+    "nyc": "^12.0.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.1"
+  }
+}
