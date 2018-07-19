@@ -50,14 +50,14 @@ Following the challenge last week rather than building a skeleton HTML that we p
 
 ![](http://www.electronicbeats.net/app/uploads/2017/03/eurorackcolors-1200x675.jpg)
 
-- Michael helped me (joe) get a better sense of how to abstract functions within our DOM file. Examples of this:
+- Michael and Joe worked closely to get a better sense of how to abstract functions within our DOM file. Examples of this:
     - API request function
     - addNewNode - a function to do the process of adding text elements within pokemon details
-    - Here's the point when Martin saw we'd created a function called **killChildren** ![](https://i.imgur.com/KaGTM3D.jpg)
+    - Also, here's the point when Martin saw we'd created a function called **killChildren** ![](https://i.imgur.com/KaGTM3D.jpg)
 
 ### API Security
 
-We created an api.js file from the start and used gitignore to mean that it was never pushed to Github or (hopefully) available within our commits.
+We created an `api.js` file from the start and used gitignore to mean that it was never pushed to Github or (hopefully) available within our commits.
 However this did mean that we needed to share your api.js file separately. It'd be good to think further around how we can do security around something like this. 
 
 ## Catching them is obviously your real quest, but what have you also learnt?
