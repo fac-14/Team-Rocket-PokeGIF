@@ -37,7 +37,7 @@ function lookUpGiphy(input, callback) {
   searchButton.addEventListener("click", function() {
     xhr(
       "GET",
-      "https://pokeapi.co/api/v2/pokemon/" + searchInput.value,
+      "https://pokeapi.co/api/v2/pokemon/" + searchInput.value.toLowerCase(),
       pokeParse,
       pokeCallback
     );
@@ -52,11 +52,12 @@ function lookUpGiphy(input, callback) {
       gifCallback
     );
     // look up the pokemon description
-    xhr("GET", "https://pokeapi.co/api/v2/pokemon-species/" + searchInput.value, 
-    pokeDescripParse, 
-    pokeDescripCallback
+    xhr(
+      "GET",
+      "https://pokeapi.co/api/v2/pokemon-species/" + searchInput.value,
+      pokeDescripParse,
+      pokeDescripCallback
     );
-    
   });
 
   randButton.addEventListener("click", function() {
@@ -159,24 +160,22 @@ function lookUpGiphy(input, callback) {
     addDetailsNode("p", types, "pokemon-types-text");
   };
 
-  var pokeDescripCallback = function (pokeDescripResponse) {
-
+  var pokeDescripCallback = function(pokeDescripResponse) {
     var description = document.getElementById("pokemon-description");
 
     killChildren(description);
 
     var header = document.createElement("h3");
-    header.classList.add('description-header');
+    header.classList.add("description-header");
     var headerText = document.createTextNode("Description:");
     var descripElem = document.createElement("p");
-    descripElem.classList.add('description-text');
+    descripElem.classList.add("description-text");
     var descripText = document.createTextNode(pokeDescripResponse);
     descripElem.appendChild(descripText);
     header.appendChild(headerText);
     description.appendChild(header);
     description.appendChild(descripElem);
-  }
-
+  };
 
   var gifArray = [];
 
