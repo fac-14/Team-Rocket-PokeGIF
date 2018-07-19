@@ -1,9 +1,9 @@
-function xhr(method, url, callback) {
+function xhr(method, url, parsecb, domcb) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var result = JSON.parse(xhr.responseText);
-      callback(result);
+      parsecb(result, domcb);
     }
   };
   xhr.open(method, url, true);
@@ -11,17 +11,17 @@ function xhr(method, url, callback) {
 }
 
 // xhr("GET", "https://pokeapi.co/api/v2/pokemon/bulbasaur", pokeParse);
-xhr("GET", "./bulbasaur.json", pokeParse);
+//xhr("GET", "./bulbasaur.json", pokeParse);
 // xhr("GET", uri, parseCB, domCB)
 
-xhr(
+/*xhr(
   "GET",
   "https://api.giphy.com/v1/gifs/search?q=bulbasaur&limit=25&rating=pg-13&api_key=" +
     giphyApiKey,
   giphyParse
-);
+); */
 
-function pokeParse(data) {
+function pokeParse(data, domcb) {
   typesParsed = [];
   for (var i = 0; i < data.types.length; i++) {
     typesParsed.push(data.types[i].type.name);
@@ -39,15 +39,15 @@ function pokeParse(data) {
     //description: data.description - STRETCHY GOAL
     sprite: data.sprites.front_default
   };
-  return pokeApiResponse;
+  domcb(pokeApiResponse);
 }
 
-function giphyParse(input) {
+function giphyParse(input, domcb) {
   var parsedLinks = [];
   input.data.forEach(function(item) {
     parsedLinks.push(item.images.downsized.url);
   });
-  return parsedLinks;
+  domcb(parsedLinks);
 }
 
 if (typeof module !== "undefined") {
