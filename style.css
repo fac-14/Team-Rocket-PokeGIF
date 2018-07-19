@@ -148,6 +148,7 @@ header {
   height: 48px;
   background-color: #3663ad;
   padding-top: 8px;
+  position: fixed;
 }
 
 header > img {
@@ -167,33 +168,49 @@ main {
   grid-row-gap: 16px;
   padding-left: 16px;
   padding-right: 16px;
+  padding-top: 64px;
+}
+
+.search-box {
+  /* grid-column-start: 1;
+  grid-column-end: 5; */
+  height: 48px;
+  position:fixed;
+  bottom: 64px;
+  width: 100%;
+  background: #565554;
   padding-top: 16px;
+}
+
+.search-box input {
+  width: calc(100% - 32px);
+  height: 32px;
+  border: 1px solid black;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.search-box input:focus {
+  outline: none;
+  border: 3px solid #ff6b35;
 }
 
 .search-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background: #565554;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 24px;
 }
 
-.search-box {
-  grid-column-start: 1;
-  grid-column-end: 5;
-  height: 48px;
-}
-
-.search-box input {
-  width: 100%;
-  height: 32px;
-  border: 1px solid black;
-  padding: 8px;
+button {
   font-size: 16px;
-  border-radius: 8px;
-}
 
-.search-box input:focus {
-  outline: none;
-  border: 3px solid #ff6b35;
 }
 
 .search-box button {
@@ -207,7 +224,9 @@ main {
 }
 
 .search-box button:focus,
-.search-box button:hover {
+.search-box button:hover,
+#getNextGIF:focus,
+#getNextGIF:hover {
   outline: none;
   background: #ff6b35;
   cursor: pointer;
@@ -216,7 +235,6 @@ main {
 #pokemon {
   grid-column-start: 1;
   grid-column-end: 5;
-  margin-top: 16px;
 }
 
 #pokemon-details {
@@ -234,45 +252,36 @@ main {
 
 #pokemon-details h2 {
   color: #d33f49;
+  font-weight: 700;
+  padding-left: 0;
+  margin-left: -4px;
   grid-column-start: 1;
   grid-column-end: 4;
   /* is font size too big? what is longest pokemon name? */
-  font-size: 32px;
+  font-size: 64px;
   /* padding-top: 8px; */
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 #pokemon h3 {
   font-weight: 700;
 }
 
-#pokemon-details .sprite-image {
+.sprite-image {
   /* background: red; */
   height: 48px;
   grid-column-start: 4;
   grid-column-end: 5;
   grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-end: 2;
+  background: red;
+  display: none;
 }
 
 .sprite-image img {
   height: 48px;
   width: 48px;
-}
-
-#pokemon-details .pokemon-types-header {
-  grid-row-start: 4;
-  grid-row-end: 4;
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-
-#pokemon-details .pokemon-types-text {
-  grid-row-start: 4;
-  grid-row-end: 4;
-  grid-column-start: 3;
-  grid-column-end: 5;
 }
 
 #pokemon-details .pokemon-entry-header {
@@ -290,16 +299,30 @@ main {
   grid-column-end: 5;
 }
 
+#pokemon-details .pokemon-types-header {
+  grid-row-start: 4;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#pokemon-details .pokemon-types-text {
+  grid-row-start: 4;
+  grid-row-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
 .pokemon-moves-header {
   grid-row-start: 5;
-  grid-row-end: 7;
+  grid-row-end: 5;
   grid-column-start: 1;
   grid-column-end: 2;
 }
 
 #pokemon-details ul {
   grid-row-start: 5;
-  grid-row-end: 5;
+  grid-row-end: 6;
   grid-column-start: 3;
   grid-column-end: 5;
 }
@@ -308,21 +331,18 @@ main {
   margin-bottom: 8px;
 }
 
-.sprite-image > img {
-  width: 96px;
-  height: 96px;
-  margin-top: -20px;
-  margin-left: -24px;
-}
-
 .description-header {
   margin-bottom: 8px;
 }
 
+#pokemon_GIF {
+  width: 100%;
+  margin-top: 24px;
+  padding-bottom: 112px;
+}
+
 .pokemon-gif {
   width: 100%;
-  border-radius: 8px;
-  margin-top: 48px;
 }
 
 #getNextGIF {
@@ -330,9 +350,14 @@ main {
   /* width is 50% i.e. 2 columns - half the gutter width (16 / 2 = 8px) */
   width: 100%;
   height: 32px;
-  background: #ffcb05;
+  background: #3663ad;
+  color: white;
+  font-weight: 700;
   border: 1px solid black;
   margin-top: 8px;
   border-radius: 8px;
   margin-bottom: 8px;
 }
+
+/* RESPONSIVE BREAKPOINT @ 600px */
+
