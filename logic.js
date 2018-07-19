@@ -10,31 +10,46 @@ function xhr(method, url, callback) {
   xhr.send();
 }
 
-xhr("GET", "https://pokeapi.co/api/v2/pokemon/bulbasaur", apiTest);
+// xhr("GET", "https://pokeapi.co/api/v2/pokemon/bulbasaur", pokeParse);
+xhr("GET", "./bulbasaur.json", pokeParse);
 // xhr("GET", uri, parseCB, domCB)
 
-function apiTest(data) {
+xhr(
+  "GET",
+  "https://api.giphy.com/v1/gifs/search?q=bulbasaur&limit=25&rating=pg-13&api_key=" +
+    giphyApiKey,
+  giphyParse
+);
+
+function pokeParse(data) {
+  typesParsed = [];
+  for (var i = 0; i < data.types.length; i++) {
+    typesParsed.push(data.types[i].type.name);
+  }
+
+  movesParsed = [];
+  for (var i = 0; i < 3; i++) {
+    movesParsed.push(data.moves[i].move.name);
+  }
   var pokeApiResponse = {
     name: data.name,
     entryNumber: data.id,
-    moves: data.moves,
-    type: data.types,
-    description: data.description,
+    moves: movesParsed,
+    type: typesParsed,
+    //description: data.description - STRETCHY GOAL
     sprite: data.sprites.front_default
   };
-  console.log(pokeApiResponse);
+  return pokeApiResponse;
 }
 
-var pokeApiResponse = {
-  name: "bulbasaur",
-  entryNumber: 1,
-  moves: ["captivate", "razor wind", "swords dance"],
-  type: ["poison", "grass"],
-  description:
-    "Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger.",
-  sprite:
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-};
+function giphyParse(input) {
+  var parsedLinks = [];
+  input.data.forEach(function(item) {
+    parsedLinks.push(item.images.downsized.url);
+  });
+  return parsedLinks;
+}
+
 if (typeof module !== "undefined") {
   module.exports = pokeApiResponse;
 }
