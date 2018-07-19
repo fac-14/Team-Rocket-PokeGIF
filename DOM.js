@@ -47,7 +47,7 @@ function lookUpGiphy(input, callback) {
   });
 
   //abstract function to add text elements within pokemon details
-  addNewNode = function(parentNodeId, element, text) {
+  var addNewNode = function(parentNodeId, element, text) {
     var parent = document.getElementById(parentNodeId);
     var elem = document.createElement(element);
     var elemText = document.createTextNode(text);
@@ -55,18 +55,18 @@ function lookUpGiphy(input, callback) {
     parent.appendChild(elem);
   }
 
-  addDetailsNode = function(element, text) {
+  var addDetailsNode = function(element, text) {
     addNewNode('pokemon-details', element, text);
   }
 
-  killChildren = function(parentNode) {
+  var killChildren = function(parentNode) {
     while (parentNode.hasChildNodes()) {
       parentNode.removeChild(parentNode.lastChild);
     }
   }
 
   //callback function to be run on pokeAPI response
-  pokeCallback = function(pokeResponse) {
+  var pokeCallback = function(pokeResponse) {
     console.log(pokeResponse);
 
     //remove all existing child nodes from #pokemon-details
