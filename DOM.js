@@ -1,6 +1,6 @@
 //Dummy function to return API calls
 
-function lookUpPokeApi(input, callback) {
+/* TIDY ME UP -- function lookUpPokeApi(input, callback) {
   // make xhr call
 
   var pokeApiResponse = {
@@ -15,20 +15,13 @@ function lookUpPokeApi(input, callback) {
   };
 
   callback(pokeApiResponse);
-}
+} */
 
 // function to randomly assign new gif
 function lookUpGiphy(input, callback) {
-  var giphyResponse = [
-    "https://media.giphy.com/media/I2nZMy0sI0ySA/giphy.gif",
-    "https://media.giphy.com/media/SfjCRiDNA951m/giphy.gif",
-    "https://media.giphy.com/media/51S87GVazTD7W/giphy.gif",
-    "https://media.giphy.com/media/imoIuptU6lelW/giphy.gif"
-  ];
+  var randomGif = Math.floor(Math.random() * input.length);
 
-  var randomGif = Math.floor(Math.random() * 3);
-
-  callback(giphyResponse[randomGif]);
+  callback(input[randomGif]);
 }
 
 //IIFE (Not Eevee...)
@@ -41,8 +34,22 @@ function lookUpGiphy(input, callback) {
 
   //add event listener for button click
   searchButton.addEventListener("click", function() {
-    lookUpPokeApi(searchInput.value, pokeCallback);
-    lookUpGiphy(searchInput.value, gifCallback);
+    xhr(
+      "GET",
+      "https://pokeapi.co/api/v2/pokemon/" + searchInput.value,
+      pokeParse,
+      pokeCallback
+    );
+    // lookUpGiphy(searchInput.value, gifCallback);
+    xhr(
+      "GET",
+      "https://api.giphy.com/v1/gifs/search?q=" +
+        searchInput.value +
+        "&limit=25&rating=pg-13&api_key=" +
+        giphyApiKey,
+      giphyParse,
+      gifCallback
+    );
   });
 
   //abstract function to add text elements within pokemon details
@@ -133,15 +140,21 @@ function lookUpGiphy(input, callback) {
     addDetailsNode('p', types, 'pokemon-types-text');
   }
 
+  var gifArray = [];
+
   //callback function to be run on Giphy API response
   gifCallback = function(giphyResponse) {
     // console.log(giphyResponse);
+    if (giphyResponse) {
+      gifArray = giphyResponse;
+    }
     var image = document.getElementById("image");
     var gif = document.createElement("img");
+    var randomGif = Math.floor(Math.random() * gifArray.length);
 
     killChildren(image);
 
-    gif.src = giphyResponse;
+    gif.src = gifArray[randomGif];
     gif.alt = "Randomly generated gif";
     gif.classList.add("pokemon-gif");
 
@@ -152,7 +165,8 @@ function lookUpGiphy(input, callback) {
   var getNextGIF = document.getElementById("getNextGIF");
 
   getNextGIF.addEventListener("click", function() {
-    var name = document.querySelector("#pokemon-details > h2").textContent;
-    lookUpGiphy(name, gifCallback);
+    // var name = document.querySelector("#pokemon-details > h2").textContent;
+    // lookUpGiphy(name, gifCallback);
+    gifCallback();
   });
 })();
