@@ -115,7 +115,7 @@ width: calc(50% - 8px);
 height: 32px;
 background: #ffcb05;
 border: 1px solid black;
-margin-top: 8px;
+margin-top: 16px;
 }
 
 .search-box button:focus,
@@ -140,7 +140,6 @@ margin-top: 8px;
     1fr;/* 7. column4 */
   grid-template-rows: 48px 48px 48px 48px;
   grid-column-gap: 16px;
-  grid-row-gap: 16px;
   /* background: blue; */
 }
 
@@ -149,8 +148,9 @@ margin-top: 8px;
   grid-column-end: 4;
   /* is font size too big? what is longest pokemon name? */
   font-size: 48px;
-  padding-top: 8px;
-  grid-row: span 1;
+  /* padding-top: 8px; */
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 .sprite-image {
@@ -159,13 +159,14 @@ margin-top: 8px;
   height: 48px;
   grid-column-start: 4;
   grid-column-end: 5;
-  grid-row: span 1;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 .sprite-image > img {
   width: 96px;
   height: 96px;
-  margin-top: -16px;
+  margin-top: -20px;
   margin-left: -24px;
 }
 
