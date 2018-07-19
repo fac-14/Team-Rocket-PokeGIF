@@ -1,22 +1,3 @@
-//Dummy function to return API calls
-
-/* TIDY ME UP -- function lookUpPokeApi(input, callback) {
-  // make xhr call
-
-  var pokeApiResponse = {
-    name: "bulbasaur",
-    entryNumber: 1,
-    moves: ["captivate", "razor wind", "swords dance"],
-    type: ["poison", "grass"],
-    description:
-      "Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun’s rays, the seed grows progressively larger.",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-  };
-
-  callback(pokeApiResponse);
-} */
-
 // function to randomly assign new gif
 function lookUpGiphy(input, callback) {
   var randomGif = Math.floor(Math.random() * input.length);

@@ -1,3 +1,6 @@
+// modular xhr request
+// takes TWO callbacks: parsecb (for parsing the JSON response) (logic.js)
+// and domcb, for rendering to DOM (from dom.js)
 function xhr(method, url, parsecb, domcb) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -5,6 +8,7 @@ function xhr(method, url, parsecb, domcb) {
       var result = JSON.parse(xhr.responseText);
       parsecb(result, domcb);
     } else if (this.status == 404) {
+      // return 404 as a number if a 404, helpful for functions
       parsecb(404, domcb);
     }
   };
@@ -12,6 +16,7 @@ function xhr(method, url, parsecb, domcb) {
   xhr.send();
 }
 
+// parse the pokemon description
 function pokeDescripParse(input, domcb) {
   var pokeDescripResponse = input.flavor_text_entries;
 
@@ -28,6 +33,7 @@ function pokeDescripParse(input, domcb) {
   // . flavor_text
 }
 
+// parse our main pokemon API request
 function pokeParse(data, domcb) {
   if (data == 404) {
     var api404 = {
@@ -40,27 +46,28 @@ function pokeParse(data, domcb) {
     };
     domcb(api404);
   } else {
+    // types and move come as two big object arrays - we want to return shorter arrays
     typesParsed = [];
     for (var i = 0; i < data.types.length; i++) {
       typesParsed.push(data.types[i].type.name);
     }
-
     movesParsed = [];
     for (var i = 0; i < 3; i++) {
       movesParsed.push(data.moves[i].move.name);
     }
+    // setup the rest of our parse - more straightforward
     var pokeApiResponse = {
       name: data.name,
       entryNumber: data.id,
       moves: movesParsed,
       type: typesParsed,
-      //description: data.description - STRETCHY GOAL
       sprite: data.sprites.front_default
     };
     domcb(pokeApiResponse);
   }
 }
 
+// parse a gipy function
 function giphyParse(input, domcb) {
   var parsedLinks = [];
   input.data.forEach(function(item) {
