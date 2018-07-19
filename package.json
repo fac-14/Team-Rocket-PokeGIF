@@ -2,9 +2,10 @@
   "name": "Team-Rocket-PokeGIF",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "logic.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon logic.test.js | tap-spec",
+    "coverage": "nyc tape ./logic.test.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/fac-14/Team-Rocket-PokeGIF#readme",
   "devDependencies": {
+    "nodemon": "^1.18.3",
     "nyc": "^12.0.2",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1"
