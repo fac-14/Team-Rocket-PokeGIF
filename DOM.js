@@ -1,22 +1,3 @@
-//Dummy function to return API calls
-
-/* TIDY ME UP -- function lookUpPokeApi(input, callback) {
-  // make xhr call
-
-  var pokeApiResponse = {
-    name: "bulbasaur",
-    entryNumber: 1,
-    moves: ["captivate", "razor wind", "swords dance"],
-    type: ["poison", "grass"],
-    description:
-      "Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun’s rays, the seed grows progressively larger.",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-  };
-
-  callback(pokeApiResponse);
-} */
-
 // function to randomly assign new gif
 function lookUpGiphy(input, callback) {
   var randomGif = Math.floor(Math.random() * input.length);
@@ -37,26 +18,17 @@ function lookUpGiphy(input, callback) {
   searchButton.addEventListener("click", function() {
     xhr(
       "GET",
-      "https://pokeapi.co/api/v2/pokemon/" + searchInput.value,
+      "https://pokeapi.co/api/v2/pokemon/" + searchInput.value.toLowerCase(),
       pokeParse,
       pokeCallback
     );
-    // lookUpGiphy(searchInput.value, gifCallback);
+    // look up the pokemon description
     xhr(
       "GET",
-      "https://api.giphy.com/v1/gifs/search?q=" +
-        searchInput.value +
-        "&limit=25&rating=pg-13&api_key=" +
-        giphyApiKey,
-      giphyParse,
-      gifCallback
+      "https://pokeapi.co/api/v2/pokemon-species/" + searchInput.value,
+      pokeDescripParse,
+      pokeDescripCallback
     );
-    // look up the pokemon description
-    xhr("GET", "https://pokeapi.co/api/v2/pokemon-species/" + searchInput.value, 
-    pokeDescripParse, 
-    pokeDescripCallback
-    );
-    
   });
 
   randButton.addEventListener("click", function() {
@@ -157,26 +129,39 @@ function lookUpGiphy(input, callback) {
     }
     addDetailsNode("h3", "Types:", "pokemon-types-header");
     addDetailsNode("p", types, "pokemon-types-text");
+
+    // phew - with THAT all done, let's now update our gif display!
+    // that's right - we're nesting XHRs in our callbacks in our callbacks!
+    // THIS IS GETTING WAY TOO META FOR MEEEEEEEEEEEeeeee
+    var giphyQuery =
+      pokeResponse.entryNumber == 404 ? "ditto" : pokeResponse.name;
+    xhr(
+      "GET",
+      "https://api.giphy.com/v1/gifs/search?q=" +
+        giphyQuery +
+        "&limit=25&rating=pg-13&api_key=" +
+        giphyApiKey,
+      giphyParse,
+      gifCallback
+    );
   };
 
-  var pokeDescripCallback = function (pokeDescripResponse) {
-
+  var pokeDescripCallback = function(pokeDescripResponse) {
     var description = document.getElementById("pokemon-description");
 
     killChildren(description);
 
     var header = document.createElement("h3");
-    header.classList.add('description-header');
+    header.classList.add("description-header");
     var headerText = document.createTextNode("Description:");
     var descripElem = document.createElement("p");
-    descripElem.classList.add('description-text');
+    descripElem.classList.add("description-text");
     var descripText = document.createTextNode(pokeDescripResponse);
     descripElem.appendChild(descripText);
     header.appendChild(headerText);
     description.appendChild(header);
     description.appendChild(descripElem);
-  }
-
+  };
 
   var gifArray = [];
 
