@@ -46,17 +46,24 @@ function lookUpGiphy(input, callback) {
   });
 
   //abstract function to add text elements within pokemon details
-  var addNewNode = function(parentNodeId, element, text) {
+  var addNewNode = function(parentNodeId, element, text, className) {
     var parent = document.getElementById(parentNodeId);
     var elem = document.createElement(element);
     var elemText = document.createTextNode(text);
     elem.appendChild(elemText);
+    if (className) {
+      elem.classList.add(className);
+    }
     parent.appendChild(elem);
   };
 
-  var addDetailsNode = function(element, text) {
-    addNewNode("pokemon-details", element, text);
-  };
+  // function to add a new text-based element to the details section
+
+  var addDetailsNode = function(element, text, className) {
+    addNewNode('pokemon-details', element, text, className);
+  }
+
+  //remove all children from a parent node
 
   var killChildren = function(parentNode) {
     while (parentNode.hasChildNodes()) {
@@ -79,19 +86,24 @@ function lookUpGiphy(input, callback) {
 
     //add new child nodes to #pokemon-details
 
-    addDetailsNode("h2", name);
+    addDetailsNode('h2', name, 'pokemon-name');
 
     //add sprite image
-    var sprite = document.createElement("img");
+    var spriteContainer = document.createElement('div');
+    var sprite = document.createElement('img');
     sprite.src = pokeResponse.sprite;
     sprite.alt = "Sprite image of " + pokeResponse.name;
-    sprite.classList.add("sprite-image");
-    pokemonDetails.appendChild(sprite);
+    spriteContainer.classList.add('sprite-image');
+    spriteContainer.appendChild(sprite);
+    pokemonDetails.appendChild(spriteContainer);
 
-    addDetailsNode("h3", "Description:");
-    addDetailsNode("p", pokeResponse.description);
-    addDetailsNode("h3", "Pokedex Entry Number:");
-    addDetailsNode("p", pokeResponse.entryNumber);
+    // Adding details is now stretch goal - replace if needed:
+
+    // addDetailsNode('h3', 'Description:');
+    // addDetailsNode('p', pokeResponse.description);
+    
+    addDetailsNode('h3', 'Pokedex Entry Number:', 'pokemon-entry-header');
+    addDetailsNode('p', pokeResponse.entryNumber, 'pokemon-entry-text');
 
     //create UL for moves and add each move as an LI
     var movesList = document.createElement("ul");
@@ -117,9 +129,9 @@ function lookUpGiphy(input, callback) {
       }
       types += pokeResponse.type[i];
     }
-    addDetailsNode("h3", "Types:");
-    addDetailsNode("p", types);
-  };
+    addDetailsNode('h3', 'Types:', 'pokemon-types-header');
+    addDetailsNode('p', types, 'pokemon-types-text');
+  }
 
   //callback function to be run on Giphy API response
   gifCallback = function(giphyResponse) {
