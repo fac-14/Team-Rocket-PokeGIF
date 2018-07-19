@@ -22,16 +22,6 @@ function lookUpGiphy(input, callback) {
       pokeParse,
       pokeCallback
     );
-    // lookUpGiphy(searchInput.value, gifCallback);
-    xhr(
-      "GET",
-      "https://api.giphy.com/v1/gifs/search?q=" +
-        searchInput.value +
-        "&limit=25&rating=pg-13&api_key=" +
-        giphyApiKey,
-      giphyParse,
-      gifCallback
-    );
     // look up the pokemon description
     xhr(
       "GET",
@@ -139,6 +129,21 @@ function lookUpGiphy(input, callback) {
     }
     addDetailsNode("h3", "Types:", "pokemon-types-header");
     addDetailsNode("p", types, "pokemon-types-text");
+
+    // phew - with THAT all done, let's now update our gif display!
+    // that's right - we're nesting XHRs in our callbacks in our callbacks!
+    // THIS IS GETTING WAY TOO META FOR MEEEEEEEEEEEeeeee
+    var giphyQuery =
+      pokeResponse.entryNumber == 404 ? "ditto" : pokeResponse.name;
+    xhr(
+      "GET",
+      "https://api.giphy.com/v1/gifs/search?q=" +
+        giphyQuery +
+        "&limit=25&rating=pg-13&api_key=" +
+        giphyApiKey,
+      giphyParse,
+      gifCallback
+    );
   };
 
   var pokeDescripCallback = function(pokeDescripResponse) {
