@@ -3,48 +3,129 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /* use border-box so that padding and margins are applied INSIDE elements' width. */
@@ -58,7 +139,7 @@ table {
 /* #3663ad #ffcb05 #ff6b35 #d33f49 #565554 */
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
 }
 
@@ -77,16 +158,22 @@ header > img {
 
 main {
   display: grid;
-  grid-template-columns: 
+  grid-template-columns:
     1fr /* 1. column1 */
     1fr /* 3. column2 */
     1fr /* 5. column3 */
-    1fr;/* 7. column4 */
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 16px;
+    1fr; /* 7. column4 */
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.search-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .search-box {
@@ -96,12 +183,12 @@ main {
 }
 
 .search-box input {
-width: 100%;
-height: 32px;
-border: 1px solid black;
-padding-left: 8px;
-padding-right: 8px;
-font-size: 16px;
+  width: 100%;
+  height: 32px;
+  border: 1px solid black;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
 }
 
 .search-box input:focus {
@@ -110,18 +197,19 @@ font-size: 16px;
 }
 
 .search-box button {
-/* width is 50% i.e. 2 columns - half the gutter width (16 / 2 = 8px) */
-width: calc(50% - 8px);
-height: 32px;
-background: #ffcb05;
-border: 1px solid black;
-margin-top: 16px;
+  /* width is 50% i.e. 2 columns - half the gutter width (16 / 2 = 8px) */
+  width: calc(50% - 8px);
+  height: 32px;
+  background: #ffcb05;
+  border: 1px solid black;
+  margin-top: 16px;
+  border-radius: 8px;
 }
 
 .search-box button:focus,
 .search-box button:hover {
   outline: none;
-  background: #ff6b35; 
+  background: #ff6b35;
   cursor: pointer;
 }
 
@@ -133,11 +221,12 @@ margin-top: 16px;
 
 #pokemon-details {
   display: grid;
-  grid-template-columns: 
+  width: 100%;
+  grid-template-columns:
     1fr /* 1. column1 */
     1fr /* 3. column2 */
     1fr /* 5. column3 */
-    1fr;/* 7. column4 */
+    1fr; /* 7. column4 */
   grid-template-rows: 48px 48px 48px 48px;
   grid-column-gap: 16px;
   /* background: blue; */
@@ -147,20 +236,56 @@ margin-top: 16px;
   grid-column-start: 1;
   grid-column-end: 4;
   /* is font size too big? what is longest pokemon name? */
-  font-size: 48px;
+  font-size: 32px;
   /* padding-top: 8px; */
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
-.sprite-image {
+#pokemon-details .sprite-image {
   /* background: red; */
   overflow: hidden;
   height: 48px;
   grid-column-start: 4;
   grid-column-end: 5;
-  grid-row-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#pokemon-details .pokemon-types-header {
+  grid-row-start: 3;
   grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#pokemon-details .pokemon-types-text {
+  grid-row-start: 4;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#pokemon-details .pokemon-entry-header {
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  font-size: 16px;
+}
+
+#pokemon-details .pokemon-entry-text {
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 4;
+  grid-column-end: 4;
+}
+
+#pokemon-details ul {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
 
 .sprite-image > img {
@@ -170,3 +295,19 @@ margin-top: 16px;
   margin-left: -24px;
 }
 
+.pokemon-gif {
+  width: 100%;
+  border-radius: 8px;
+}
+
+#getNextGIF {
+  width: 100%;
+  /* width is 50% i.e. 2 columns - half the gutter width (16 / 2 = 8px) */
+  width: 100%;
+  height: 32px;
+  background: #ffcb05;
+  border: 1px solid black;
+  margin-top: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
