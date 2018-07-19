@@ -1,7 +1,7 @@
 # Team Rocket Readme - PokeGif!
 
 ## how did this happen? the whole thing is a bit Farfetch'd.
-
+![dream team](https://media.giphy.com/media/SJ20RExjkWthu/giphy.gif)
 The people responsible for wanting to be the very best, like no-one ever was:
 
 - Harry (@harryy27)
@@ -63,6 +63,7 @@ However this did mean that we needed to share your api.js file separately. It'd 
 ## Catching them is obviously your real quest, but what have you also learnt?
 
 ### TDD - What TDD?
+![TDD](https://media.giphy.com/media/nwErbJbGs6hBS/giphy.gif)
 We were huge failures at TDD this week. HUGE. We both couldn't quite work out how to run an asyncronous request through tape and then just stopped doing it completely.
 
 We created a test.html file which was a handy way to console log the requests to check everything was grabbing the right bits. However, on reflection this may be should have been tackled through TDD. Again though, this comes to our confusion over testing asyncronous actions. 
@@ -97,3 +98,5 @@ But we didn't refer back to it as much as we could and should have done. We prob
 ## What's the best pokeman?
 
 Pikachu, obviously.
+
+![pika pi](https://media.giphy.com/media/p6P1eAF4jsN0I/giphy.gif)
