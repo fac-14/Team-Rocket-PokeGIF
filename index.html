@@ -8,6 +8,7 @@
   <link rel="icon" type="image" href="https://cdn3.iconfinder.com/data/icons/pokemons/500/Pokemon_shadom_pokeball_games_-512.png"
   />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <script src="api.js"></script>
   <script src="logic.js"></script>
@@ -21,10 +22,10 @@
   </header>
 
   <main>
-    <input type="text" name="searchInput" placeholder="Gotta search 'em all..." required>
-
-    <button id="searchButton">Search</button>
-
+    <div class="search-box">
+      <input type="text" name="searchInput" autocomplete="off" placeholder="Gotta search 'em all..." required >
+      <button id="searchButton">Search</button>
+    </div>
     <section id="pokemon">
 
       <article id="pokemon-details">
