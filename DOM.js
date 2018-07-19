@@ -82,9 +82,11 @@ function lookUpGiphy(input, callback) {
     name[0] = name[0].toUpperCase();
     name = name.join("");
 
-    //add new child nodes to #pokemon-details
+    //add name as h1 of page
+    var pokemonName = document.getElementById('pokemon-name');
+    pokemonName.innerText = name;
 
-    addDetailsNode("h2", name, "pokemon-name");
+    //add new child nodes to #pokemon-details
 
     //add sprite image
     var spriteContainer = document.createElement("div");
