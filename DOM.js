@@ -82,9 +82,11 @@ function lookUpGiphy(input, callback) {
     name[0] = name[0].toUpperCase();
     name = name.join("");
 
-    //add new child nodes to #pokemon-details
+    //add name as h1 of page
+    var pokemonName = document.getElementById('pokemon-name');
+    pokemonName.innerText = name;
 
-    addDetailsNode("h2", name, "pokemon-name");
+    //add new child nodes to #pokemon-details
 
     //add sprite image
     var spriteContainer = document.createElement("div");
@@ -103,12 +105,16 @@ function lookUpGiphy(input, callback) {
     addDetailsNode("h3", "Pokedex Entry Number:", "pokemon-entry-header");
     addDetailsNode("p", pokeResponse.entryNumber, "pokemon-entry-text");
 
+    //create header for moves
+
+    addDetailsNode("h3", "Moves:", "pokemon-moves-header");
+    
     //create UL for moves and add each move as an LI
     var movesList = document.createElement("ul");
-    var movesHeader = document.createElement("h3");
-    var movesHeaderText = document.createTextNode("Moves:");
-    movesHeader.appendChild(movesHeaderText);
-    movesList.appendChild(movesHeader);
+    // var movesHeader = document.createElement("h3");
+    // var movesHeaderText = document.createTextNode("Moves:");
+    // movesHeader.appendChild(movesHeaderText);
+    // pokemonDetails.appendChild(movesHeader);
 
     //append each move as LI
     pokeResponse.moves.forEach(function(move) {
