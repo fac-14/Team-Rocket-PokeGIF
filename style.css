@@ -227,34 +227,43 @@ main {
     1fr /* 3. column2 */
     1fr /* 5. column3 */
     1fr; /* 7. column4 */
-  grid-template-rows: 48px 48px 48px 48px;
+  grid-template-rows: 48px 48px 48px 48px 48px 48px;
   grid-column-gap: 16px;
   /* background: blue; */
 }
 
 #pokemon-details h2 {
+  color: #d33f49;
   grid-column-start: 1;
   grid-column-end: 4;
   /* is font size too big? what is longest pokemon name? */
   font-size: 32px;
   /* padding-top: 8px; */
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#pokemon h3 {
+  font-weight: 700;
 }
 
 #pokemon-details .sprite-image {
   /* background: red; */
-  overflow: hidden;
   height: 48px;
   grid-column-start: 4;
   grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.sprite-image img {
+  height: 48px;
+  width: 48px;
 }
 
 #pokemon-details .pokemon-types-header {
-  grid-row-start: 3;
-  grid-row-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 4;
   grid-column-start: 1;
   grid-column-end: 2;
 }
@@ -262,30 +271,41 @@ main {
 #pokemon-details .pokemon-types-text {
   grid-row-start: 4;
   grid-row-end: 4;
-  grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 5;
 }
 
 #pokemon-details .pokemon-entry-header {
-  grid-row-start: 2;
-  grid-row-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 3;
   font-size: 16px;
 }
 
 #pokemon-details .pokemon-entry-text {
-  grid-row-start: 2;
-  grid-row-end: 2;
-  grid-column-start: 4;
-  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+.pokemon-moves-header {
+  grid-row-start: 5;
+  grid-row-end: 7;
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
 
 #pokemon-details ul {
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 5;
   grid-column-start: 3;
-  grid-column-end: 4;
+  grid-column-end: 5;
+}
+
+#pokemon-details > ul > li {
+  margin-bottom: 8px;
 }
 
 .sprite-image > img {
@@ -295,9 +315,14 @@ main {
   margin-left: -24px;
 }
 
+.description-header {
+  margin-bottom: 8px;
+}
+
 .pokemon-gif {
   width: 100%;
   border-radius: 8px;
+  margin-top: 48px;
 }
 
 #getNextGIF {
