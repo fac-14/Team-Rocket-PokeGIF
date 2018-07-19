@@ -28,6 +28,7 @@ function lookUpGiphy(input, callback) {
 (function() {
   //define vars for search button and input
   var searchButton = document.querySelector("#searchButton");
+  var randButton = document.querySelector("#randButton");
   var searchInput = document.querySelector('input[name="searchInput"]');
   var pokemonDetails = document.querySelector("#pokemon-details");
   var pokemonArticle = document.querySelector("#pokemon");
@@ -52,6 +53,18 @@ function lookUpGiphy(input, callback) {
     );
   });
 
+  randButton.addEventListener("click", function() {
+    console.log("Testing Random!");
+    var rand = Math.floor(Math.random() * 802);
+    console.log("https://pokeapi.co/api/v2/pokemon/" + rand);
+    xhr(
+      "GET",
+      "https://pokeapi.co/api/v2/pokemon/" + rand,
+      pokeParse,
+      pokeCallback
+    );
+  });
+
   //abstract function to add text elements within pokemon details
   var addNewNode = function(parentNodeId, element, text, className) {
     var parent = document.getElementById(parentNodeId);
@@ -67,8 +80,8 @@ function lookUpGiphy(input, callback) {
   // function to add a new text-based element to the details section
 
   var addDetailsNode = function(element, text, className) {
-    addNewNode('pokemon-details', element, text, className);
-  }
+    addNewNode("pokemon-details", element, text, className);
+  };
 
   //remove all children from a parent node
 
@@ -93,14 +106,14 @@ function lookUpGiphy(input, callback) {
 
     //add new child nodes to #pokemon-details
 
-    addDetailsNode('h2', name, 'pokemon-name');
+    addDetailsNode("h2", name, "pokemon-name");
 
     //add sprite image
-    var spriteContainer = document.createElement('div');
-    var sprite = document.createElement('img');
+    var spriteContainer = document.createElement("div");
+    var sprite = document.createElement("img");
     sprite.src = pokeResponse.sprite;
     sprite.alt = "Sprite image of " + pokeResponse.name;
-    spriteContainer.classList.add('sprite-image');
+    spriteContainer.classList.add("sprite-image");
     spriteContainer.appendChild(sprite);
     pokemonDetails.appendChild(spriteContainer);
 
@@ -108,9 +121,9 @@ function lookUpGiphy(input, callback) {
 
     // addDetailsNode('h3', 'Description:');
     // addDetailsNode('p', pokeResponse.description);
-    
-    addDetailsNode('h3', 'Pokedex Entry Number:', 'pokemon-entry-header');
-    addDetailsNode('p', pokeResponse.entryNumber, 'pokemon-entry-text');
+
+    addDetailsNode("h3", "Pokedex Entry Number:", "pokemon-entry-header");
+    addDetailsNode("p", pokeResponse.entryNumber, "pokemon-entry-text");
 
     //create UL for moves and add each move as an LI
     var movesList = document.createElement("ul");
@@ -136,9 +149,9 @@ function lookUpGiphy(input, callback) {
       }
       types += pokeResponse.type[i];
     }
-    addDetailsNode('h3', 'Types:', 'pokemon-types-header');
-    addDetailsNode('p', types, 'pokemon-types-text');
-  }
+    addDetailsNode("h3", "Types:", "pokemon-types-header");
+    addDetailsNode("p", types, "pokemon-types-text");
+  };
 
   var gifArray = [];
 
