@@ -50,6 +50,12 @@ function lookUpGiphy(input, callback) {
       giphyParse,
       gifCallback
     );
+    // look up the pokemon description
+    xhr("GET", "https://pokeapi.co/api/v2/pokemon-species/" + searchInput.value, 
+    pokeDescripParse, 
+    pokeDescripCallback
+    );
+    
   });
 
   //abstract function to add text elements within pokemon details
@@ -80,7 +86,7 @@ function lookUpGiphy(input, callback) {
 
   //callback function to be run on pokeAPI response
   var pokeCallback = function(pokeResponse) {
-    console.log(pokeResponse);
+    // console.log(pokeResponse);
 
     //remove all existing child nodes from #pokemon-details
     killChildren(pokemonDetails);
@@ -139,6 +145,25 @@ function lookUpGiphy(input, callback) {
     addDetailsNode('h3', 'Types:', 'pokemon-types-header');
     addDetailsNode('p', types, 'pokemon-types-text');
   }
+
+  var pokeDescripCallback = function (pokeDescripResponse) {
+
+    var description = document.getElementById("pokemon-description");
+
+    killChildren(description);
+
+    var header = document.createElement("h3");
+    header.classList.add('description-header');
+    var headerText = document.createTextNode("Description:");
+    var descripElem = document.createElement("p");
+    descripElem.classList.add('description-text');
+    var descripText = document.createTextNode(pokeDescripResponse);
+    descripElem.appendChild(descripText);
+    header.appendChild(headerText);
+    description.appendChild(header);
+    description.appendChild(descripElem);
+  }
+
 
   var gifArray = [];
 

@@ -21,6 +21,25 @@ function xhr(method, url, parsecb, domcb) {
   giphyParse
 ); */
 
+
+
+
+function pokeDescripParse(input, domcb) {
+  var pokeDescripResponse = input.flavor_text_entries;
+  
+  for (var i = 0; i < pokeDescripResponse.length; i++) {
+    if (pokeDescripResponse[i].language.name == "en") {
+       var pokeDescrip = pokeDescripResponse[i].flavor_text;
+       break;
+    }
+  }
+  domcb(pokeDescrip);
+
+  // .flavor_text_entries
+	// .language.name == “en”
+	// . flavor_text
+}
+
 function pokeParse(data, domcb) {
   typesParsed = [];
   for (var i = 0; i < data.types.length; i++) {
