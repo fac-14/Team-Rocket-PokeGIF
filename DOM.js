@@ -13,8 +13,20 @@ function lookUpGiphy(input, callback) {
   var searchInput = document.querySelector('input[name="searchInput"]');
   var pokemonDetails = document.querySelector("#pokemon-details");
 
+  //opening pokeball animation vars 
+  var pokeballBackground = document.querySelector(".pokemon-overlay");
+  var pokeballLeft = document.querySelector(".pokemon-left");
+  var pokeballRight = document.querySelector(".pokemon-right");
+  var pokeballRotate = document.querySelector(".pokemon-container");
+
   //add event listener for button click
   searchButton.addEventListener("click", function() {
+    if (pokeballLeft.classList.contains("pokemon-left-animation")) {
+      pokeballLeft.classList.remove("pokemon-left-animation");
+      pokeballRight.classList.remove("pokemon-right-animation");
+      pokeballBackground.classList.add("pokemon-overlay-background");
+    }
+    pokeballRotate.classList.add("pokemon-container-rotate");
     xhr(
       "GET",
       "https://pokeapi.co/api/v2/pokemon/" + searchInput.value.toLowerCase(),
@@ -31,6 +43,12 @@ function lookUpGiphy(input, callback) {
   });
 
   randButton.addEventListener("click", function() {
+    if (pokeballLeft.classList.contains("pokemon-left-animation")) {
+      pokeballLeft.classList.remove("pokemon-left-animation");
+      pokeballRight.classList.remove("pokemon-right-animation");
+      pokeballBackground.classList.add("pokemon-overlay-background");
+    }
+    pokeballRotate.classList.add("pokemon-container-rotate");
     console.log("Testing Random!");
     var rand = Math.floor(Math.random() * 802);
     console.log("https://pokeapi.co/api/v2/pokemon/" + rand);
@@ -185,6 +203,11 @@ function lookUpGiphy(input, callback) {
     gif.src = gifArray[randomGif];
     gif.alt = "Randomly generated gif";
     gif.classList.add("pokemon-gif");
+
+    pokeballRotate.classList.remove("pokemon-container-rotate");
+    pokeballBackground.classList.remove("pokemon-overlay-background");
+    pokeballLeft.classList.add("pokemon-left-animation");
+    pokeballRight.classList.add("pokemon-right-animation");
 
     image.appendChild(gif);
   };

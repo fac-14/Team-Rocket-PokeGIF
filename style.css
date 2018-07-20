@@ -155,6 +155,7 @@ header {
   background-color: #3663ad;
   padding-top: 8px;
   position: fixed;
+  z-index: 2;
 }
 
 header > img {
@@ -237,6 +238,116 @@ button {
   background: #ff6b35;
   cursor: pointer;
 }
+
+/* Adding in the pokeball overlay */
+
+.pokemon-overlay {
+  height: 100vh;
+  position: absolute;
+  align-items: center;
+  bottom: 32px;
+  overflow-x: hidden;
+}
+
+.pokemon-overlay-background {
+  background-color: white;
+}
+
+.pokemon-container {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  width: 100vw;
+  display: flex;
+}
+
+.pokemon-container-rotate {
+  animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+}
+to {
+    transform: rotate(359deg);
+}
+}
+
+.pokemon-left > img {
+  height: 320px;
+}
+
+.pokemon-right > img {
+  height: 320px;
+}
+
+.pokemon-left {
+  background-color: white;
+  display: flex;
+  width: 50vw; 
+  justify-content: flex-end;
+  align-items: center;
+  /* background-image: url(./pokeball-left.png);
+  background-size: 150%;
+  background-repeat: no-repeat;
+  background-position-x: 11.5vw;
+  background-position-y: center; */
+  height: 100vh;
+}
+
+.pokemon-left-animation {
+  animation: exit-left 1s linear forwards;
+}
+
+.pokemon-left-enter {
+  animation: enter-left 2s linear forwards;
+}
+
+.pokemon-right {
+  background-color: white;
+  display: flex; 
+  justify-content: flex-start;
+  align-items: center;
+  width: 50vw;
+  /* background-image: url(./pokeball-right.png);
+  background-size: 150%;
+  background-repeat: no-repeat;  */
+  /* background-position-x: -38.5vw;
+  background-position-y: center; */
+  height: 100vh;
+}
+
+.pokemon-right-animation {
+  animation: exit-right 1s linear forwards;
+}
+
+.pokemon-right-enter {
+  animation: enter-left 2s linear forwards;
+}
+
+@keyframes exit-left {
+  100% {
+    transform: translate(-100%, 0);
+  }
+} 
+
+@keyframes exit-right {
+  100% {
+    transform: translate(100%, 0);
+  }
+}   
+
+@keyframes enter-left {
+  100% {
+    transform: translate(100%, 0);
+  }
+} 
+
+@keyframes enter-right {
+  100% {
+    transform: translate(-100%, 0);
+  }
+}  
 
 #pokemon {
   grid-column-start: 1;
