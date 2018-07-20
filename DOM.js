@@ -38,13 +38,6 @@ function lookUpGiphy(input, callback) {
       pokeParse,
       pokeCallback
     );
-    // look up the pokemon description
-    xhr(
-      "GET",
-      "https://pokeapi.co/api/v2/pokemon-species/" + searchInput.value,
-      pokeDescripParse,
-      pokeDescripCallback
-    );
   });
 
   randButton.addEventListener("click", function() {
@@ -158,6 +151,14 @@ function lookUpGiphy(input, callback) {
     addDetailsNode("h3", "Types:", "pokemon-types-header");
     addDetailsNode("p", types, "pokemon-types-text");
 
+    // ROUND 2: kick it all off again with a description call 
+    xhr(
+      "GET",
+      "https://pokeapi.co/api/v2/pokemon-species/" + pokeResponse.name,
+      pokeDescripParse,
+      pokeDescripCallback
+    );
+
     // phew - with THAT all done, let's now update our gif display!
     // that's right - we're nesting XHRs in our callbacks in our callbacks!
     // THIS IS GETTING WAY TOO META FOR MEEEEEEEEEEEeeeee
@@ -208,6 +209,8 @@ function lookUpGiphy(input, callback) {
     gif.src = gifArray[randomGif];
     gif.alt = "Randomly generated gif";
     gif.classList.add("pokemon-gif");
+
+    // animation - pull back the pokeball to reveal the MAGIC
 
     pokeballRotate.classList.remove("pokemon-container-rotate");
     pokeballBackground.classList.remove("pokemon-overlay-background");
