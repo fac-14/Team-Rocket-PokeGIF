@@ -12,7 +12,6 @@ function lookUpGiphy(input, callback) {
   var randButton = document.querySelector("#randButton");
   var searchInput = document.querySelector('input[name="searchInput"]');
   var pokemonDetails = document.querySelector("#pokemon-details");
-  var pokemonArticle = document.querySelector("#pokemon");
 
   //add event listener for button click
   searchButton.addEventListener("click", function() {
