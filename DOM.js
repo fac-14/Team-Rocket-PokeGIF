@@ -98,6 +98,19 @@
     addDetailsNode("h3", "Pokedex Entry Number:", "pokemon-entry-header");
     addDetailsNode("p", pokeResponse.entryNumber, "pokemon-entry-text");
 
+    //turn types array into string
+    var types = "";
+    
+    for (i = 0; i < pokeResponse.type.length; i++) {
+      if (i > 0) {
+        types += " / ";
+        }
+      types += pokeResponse.type[i];
+      }
+
+    addDetailsNode("h3", "Types:", "pokemon-types-header");
+    addDetailsNode("p", types, "pokemon-types-text");
+
     //create header for moves
 
     addDetailsNode("h3", "Moves:", "pokemon-moves-header");
@@ -117,17 +130,6 @@
       movesList.appendChild(li);
     });
     pokemonDetails.appendChild(movesList);
-
-    //turn types array into string
-    var types = "";
-    for (i = 0; i < pokeResponse.type.length; i++) {
-      if (i > 0) {
-        types += " / ";
-      }
-      types += pokeResponse.type[i];
-    }
-    addDetailsNode("h3", "Types:", "pokemon-types-header");
-    addDetailsNode("p", types, "pokemon-types-text");
 
     // phew - with THAT all done, let's now update our gif display!
     // that's right - we're nesting XHRs in our callbacks in our callbacks!

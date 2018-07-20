@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -46,9 +46,12 @@
   </main>
 
   <footer class="search-box">
-    <input type="text" name="searchInput" autocomplete="off" placeholder="Gotta search 'em all..." required>
+    <label for "text-input" class="visually-hidden">Enter pokemon name</label>
+    <input type="text" id="text-input" name="searchInput" autocomplete="off" placeholder="Gotta search 'em all..." required>
     <div class="search-buttons">
-      <button id="searchButton">Submit</button>
+      <label for "searchButton" class="visually-hidden">Search pokemon</label>
+      <button id="searchButton">Search</button>
+      <label for "randButton" class="visually-hidden">Get a random pokemon</label>
       <button id="randButton">Random</button>
     </div>
   </footer>
