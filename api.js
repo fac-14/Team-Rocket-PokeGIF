@@ -1,1 +1,1 @@
-var giphyApiKey = "oDx3usygiXQqpF4aQKeM8NHlaB4nVkiw";
+var giphyApiKey = "Enter your API key here";
