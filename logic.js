@@ -18,15 +18,19 @@ function xhr(method, url, parsecb, domcb) {
 
 // parse the pokemon description
 function pokeDescripParse(input, domcb) {
-  var pokeDescripResponse = input.flavor_text_entries;
+  if (input == 404) {
+    domcb("It's a 404. Maybe one day it will be a real Pokemon. But not today");
+  } else {
+    var pokeDescripResponse = input.flavor_text_entries;
 
-  for (var i = 0; i < pokeDescripResponse.length; i++) {
-    if (pokeDescripResponse[i].language.name == "en") {
-      var pokeDescrip = pokeDescripResponse[i].flavor_text;
-      break;
+    for (var i = 0; i < pokeDescripResponse.length; i++) {
+      if (pokeDescripResponse[i].language.name == "en") {
+        var pokeDescrip = pokeDescripResponse[i].flavor_text;
+        break;
+      }
     }
+    domcb(pokeDescrip);
   }
-  domcb(pokeDescrip);
 
   // .flavor_text_entries
   // .language.name == “en”

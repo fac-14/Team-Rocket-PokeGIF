@@ -23,6 +23,16 @@
 
   <main>
     <h1 class='visually-hidden'>Pokegif</h1>
+    <div class="pokemon-overlay pokemon-overlay-background">
+        <div class="pokemon-container">
+        <div class="pokemon-left">
+          <img src="pokeball-left.png">
+        </div>
+        <div class="pokemon-right">
+          <img src="pokeball-right.png" class="right-image"> 
+        </div>
+      </div>
+  </div>
     <section id="pokemon">
       <h2 id="pokemon-name"></h2>
 
@@ -49,7 +59,7 @@
   </main>
 
   <footer class="search-box">
-    <input type="text" name="searchInput" autocomplete="off" placeholder="Gotta search 'em all..." required>
+    <input type="text" name="searchInput" autocomplete="off" placeholder="Gotta search 'em all..." id="text-input" required>
     <div class="search-buttons">
       <button id="searchButton">Submit</button>
       <button id="randButton">Random</button>
