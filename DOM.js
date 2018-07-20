@@ -21,6 +21,11 @@ function lookUpGiphy(input, callback) {
 
   //add event listener for button click
   searchButton.addEventListener("click", function() {
+    var x = document.getElementById("text-input").value.trim();
+      if (x == "") {
+        alert("Please enter a pokemon name! :)");
+        return;
+      } 
     if (pokeballLeft.classList.contains("pokemon-left-animation")) {
       pokeballLeft.classList.remove("pokemon-left-animation");
       pokeballRight.classList.remove("pokemon-right-animation");
