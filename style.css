@@ -367,3 +367,95 @@ button {
 
 /* RESPONSIVE BREAKPOINT @ 600px */
 
+@media all and (min-width: 600px) {
+  main {
+    display: grid;
+    grid-template-columns:
+      1fr
+      1fr
+      1fr
+      1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    padding-left: 128px;
+    padding-right: 128px;
+    padding-top: 64px;
+  }
+
+  .search-box {
+    /* grid-column-start: 1;
+    grid-column-end: 5; */
+    height: 48px;
+    position:fixed;
+    bottom: 64px;
+    width: 100%;
+    background: #565554;
+    padding-top: 16px;
+  }
+  
+  .search-box input {
+    margin-left: 128px;
+    margin-right: 128px;
+    width: calc(100% - 256px);
+  }
+
+  .search-buttons {
+    display: inline-flex;
+    width: calc(100%);
+    flex-direction: row;
+    justify-content: space-between;
+    background: #565554;
+    padding-left: 128px;
+    padding-right: 128px;
+    padding-bottom: 24px;
+  }
+
+  .search-box button {
+    /* width is 50% i.e. 2 columns - half the gutter width (16 / 2 = 8px) */
+    width: calc(50% - 8px);
+    height: 32px;
+    background: #ffcb05;
+    border: 1px solid black;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+
+}
+
+@media all and (min-width: 750px) {
+  #getNextGIF {
+    width: calc(25% - 12px);
+    margin-left: calc(75% + 12px);
+  }
+
+  .search-buttons {
+    display: inline-flex;
+    width: calc(50%);
+    flex-direction: row;
+    justify-content: space-between;
+    background: #565554;
+    padding-left: 12px;
+    padding-right: 128px;
+    padding-bottom: 24px;
+  }
+
+  .search-box button {
+    /* width is 50% i.e. 2 columns - half the gutter width (16 / 2 = 8px) */
+    width: calc(50% - 4px);
+    height: 32px;
+    background: #ffcb05;
+    border: 1px solid black;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+
+  .search-box input {
+    width: calc(50% - 136px);
+    margin-right: 0;
+  }
+
+  .search-box {
+    height: 96px;
+    bottom: 0;
+  }
+}
