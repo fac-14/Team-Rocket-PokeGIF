@@ -7,8 +7,8 @@
   var pokemonDetails = document.querySelector("#pokemon-details");
   var pokemonArticle = document.querySelector("#pokemon");
 
-  //add event listener for button click
-  searchButton.addEventListener("click", function() {
+
+  function searchPokemon() {
     xhr(
       "GET",
       "https://pokeapi.co/api/v2/pokemon/" + searchInput.value.toLowerCase(),
@@ -22,6 +22,20 @@
       pokeDescripParse,
       pokeDescripCallback
     );
+    searchInput.value = "";
+  }
+
+  //add event listener for 'enter' key on the input field
+  const node = document.getElementById("searchInput");
+  node.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        searchPokemon();
+    }
+  });
+
+  //add event listener for button click on the search button
+  searchButton.addEventListener("click", function() {
+    searchPokemon();
   });
 
   randButton.addEventListener("click", function() {
@@ -100,7 +114,7 @@
 
     //turn types array into string
     var types = "";
-    
+
     for (i = 0; i < pokeResponse.type.length; i++) {
       if (i > 0) {
         types += " / ";
