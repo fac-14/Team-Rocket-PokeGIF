@@ -134,6 +134,12 @@ table {
   box-sizing: border-box;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
 /* COLOUR PALETTE */
 
 /* #3663ad #ffcb05 #ff6b35 #d33f49 #565554 */
