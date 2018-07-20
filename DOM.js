@@ -138,7 +138,7 @@
       "GET",
       "https://api.giphy.com/v1/gifs/search?q=" +
         giphyQuery +
-        "&limit=25&rating=pg-13&api_key=" +
+        "&limit=25&rating=g&api_key=" +
         giphyApiKey,
       giphyParse,
       gifCallback
