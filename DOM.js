@@ -1,10 +1,3 @@
-// function to randomly assign new gif
-function lookUpGiphy(input, callback) {
-  var randomGif = Math.floor(Math.random() * input.length);
-
-  callback(input[randomGif]);
-}
-
 //IIFE (Not Eevee...)
 (function() {
   //define vars for search button and input
