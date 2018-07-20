@@ -22,38 +22,40 @@
   </header>
 
   <main>
-    <div class="search-box">
-      <input type="text" name="searchInput" autocomplete="off" placeholder="Gotta search 'em all..." required>
-      <div class="search-buttons">
-        <button id="searchButton">Submit</button>
-        <button id="randButton">Random</button>
-      </div>
-    </div>
+    <h1 class='visually-hidden'>Pokegif</h1>
     <section id="pokemon">
-      <h1 id="pokemon-name"></h1>
+      <h2 id="pokemon-name"></h2>
 
-      <article id="pokemon-details">
+      <div id="pokemon-details">
 
-      </article>
-      <article id="pokemon-description">
+      </div>
+
+      <div id="pokemon-description">
         
-      </article>
-      <article id="pokemon_GIF">
+      </div>
+
+      <div id="pokemon_GIF">
+        
         <div id="image">
 
         </div>
 
         <button id="getNextGIF">Next GIF</button>
 
-      </article>
+      </div>
 
     </section>
 
   </main>
 
-  <footer>
-
+  <footer class="search-box">
+    <input type="text" name="searchInput" autocomplete="off" placeholder="Gotta search 'em all..." required>
+    <div class="search-buttons">
+      <button id="searchButton">Submit</button>
+      <button id="randButton">Random</button>
+    </div>
   </footer>
+
 </body>
 
 </html>
