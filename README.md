@@ -13,7 +13,7 @@ The people responsible for wanting to be the very best, like no-one ever was:
 ## How do i make pokemons?
 
 1.  Clone this repo
-2.  Create an `api.js` file within the workspace
+2.  Open the `api.js` file within the workspace
 3.  Then plop your own Giphy key into a `giphyApiKey` variable in your `api.js`. We're a secure bunch! **NOTE: Remember to make your API key a string!!!**
 4.  Get crack-a-lacking by opening `index.html` in a live server.
 
